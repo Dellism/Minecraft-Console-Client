@@ -798,6 +798,12 @@ namespace MinecraftClient
                     if (ChatBots.AutoRelog.OnDisconnectStatic(disconnectReason.Value, errorMessage!))
                         return; //AutoRelog is triggering a restart of the client, don't turn on the offline prompt
                 }
+
+                //realistically we should do that if autorelog doesnt care about the reason
+                if (ChatBots.AutoRelog.Config.Ignore_Kick_Message) {
+                    ChatBots.AutoRelog.OnDisconnectStatic(ChatBot.DisconnectReason.ConnectionLost, errorMessage!);
+                    return;
+                }
                 
                 if (offlinePrompt == null)
                 {
