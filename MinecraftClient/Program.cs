@@ -801,7 +801,7 @@ namespace MinecraftClient
 
                 //realistically we should do that if autorelog doesnt care about the reason
                 if (ChatBots.AutoRelog.Config.Ignore_Kick_Message) {
-                    ChatBots.AutoRelog.OnDisconnectStatic(ChatBot.DisconnectReason.ConnectionLost, errorMessage!);
+                    if (ChatBots.AutoRelog.OnDisconnectStatic(ChatBot.DisconnectReason.ConnectionLost, errorMessage!));
                     return;
                 }
                 
